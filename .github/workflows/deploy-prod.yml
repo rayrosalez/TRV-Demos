@@ -1,0 +1,18 @@
+# Deployment that runs after a pull request is merged.
+# Demonstrates the "promote to prod" stage of the SDLC for a
+# Databricks Asset Bundle (DAB).
+name: Deploy to Prod
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deploy-prod:
+    name: Deploy Prod
+    # Only run when the PR was actually merged (not just closed).
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Promote DAB to prod
+        run: echo 'After Approval Gate run "databricks bundle deploy --target prod" to promote DAB'

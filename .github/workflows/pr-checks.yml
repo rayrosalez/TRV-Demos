@@ -1,0 +1,23 @@
+# CI checks that run on every pull request.
+# Demonstrates the "validate before merge" stage of the SDLC for a
+# Databricks Asset Bundle (DAB).
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  unit-test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run unit tests
+        run: echo "This is a Unit Test"
+
+  bundle-validate:
+    name: Bundle Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate bundle configuration
+        run: echo 'This is when you run "databricks bundle validate" to ensure correct YAML configuration'
